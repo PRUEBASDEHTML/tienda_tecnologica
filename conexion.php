@@ -1,9 +1,10 @@
 <?php
-$host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost';
-$usuario = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
-$password = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: '';
-$base_datos = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'tienda_tecnologica';
-$port = getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: '3306';
+// Obtener variables de entorno priorizando las de Railway
+$host = $_ENV['MYSQLHOST'] ?? $_SERVER['MYSQLHOST'] ?? getenv('MYSQLHOST') ?: 'localhost';
+$usuario = $_ENV['MYSQLUSER'] ?? $_SERVER['MYSQLUSER'] ?? getenv('MYSQLUSER') ?: 'root';
+$password = $_ENV['MYSQLPASSWORD'] ?? $_SERVER['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD') ?: '';
+$base_datos = $_ENV['MYSQLDATABASE'] ?? $_SERVER['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE') ?: 'tienda_tecnologica';
+$port = $_ENV['MYSQLPORT'] ?? $_SERVER['MYSQLPORT'] ?? getenv('MYSQLPORT') ?: '3306';
 
 $conn = new mysqli($host, $usuario, $password, $base_datos, $port);
 
