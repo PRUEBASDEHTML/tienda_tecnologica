@@ -1,10 +1,21 @@
 <?php
-// Obtener variables de entorno priorizando las de Railway
-$host = $_ENV['MYSQLHOST'] ?? $_SERVER['MYSQLHOST'] ?? getenv('MYSQLHOST') ?: 'localhost';
-$usuario = $_ENV['MYSQLUSER'] ?? $_SERVER['MYSQLUSER'] ?? getenv('MYSQLUSER') ?: 'root';
-$password = $_ENV['MYSQLPASSWORD'] ?? $_SERVER['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD') ?: '';
-$base_datos = $_ENV['MYSQLDATABASE'] ?? $_SERVER['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE') ?: 'tienda_tecnologica';
-$port = $_ENV['MYSQLPORT'] ?? $_SERVER['MYSQLPORT'] ?? getenv('MYSQLPORT') ?: '3306';
+// Intentar leer la URL completa de conexión si Railway la provee
+$database_url = getenv('MYSQL_URL') ?: getenv('DATABASE_URL');
+
+if ($database_url) {
+    $dbparts = parse_url($database_url);
+    $host = $dbparts['host'] ?? 'localhost';
+    $usuario = $dbparts['user'] ?? 'root';
+    $password = $dbparts['pass'] ?? '';
+    $base_datos = ltrim($dbparts['path'], '/');
+    $port = $dbparts['port'] ?? '3306';
+} else {
+    $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost';
+    $usuario = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
+    $password = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: getenv('MYSQLROOTPASSWORD') ?: '';
+    $base_datos = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'tienda_tecnologica';
+    $port = getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: '3306';
+}
 
 $conn = new mysqli($host, $usuario, $password, $base_datos, $port);
 
