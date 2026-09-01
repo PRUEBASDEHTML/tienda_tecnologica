@@ -20,16 +20,24 @@ function enviarCodigoVerificacion($correo, $codigo)
 
         $mail->SMTPAuth = true;
 
-        // 👇 CAMBIA ESTO POR TU GMAIL
         $mail->Username = 'mp971620@gmail.com';
 
-        // 👇 CAMBIA ESTO POR TU CONTRASEÑA
-        // DE APLICACIÓN DE GOOGLE
         $mail->Password = 'oicg zlyo vitx gycx';
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
         $mail->Port = 587;
+
+        // ⏱️ IMPORTANTE: Agregar un límite de tiempo (Timeout) 
+        // para evitar que la página se quede congelada si Railway bloquea el puerto
+        $mail->Timeout = 5; 
+        $mail->SMTPConnectOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
 
 
         // ========================================
