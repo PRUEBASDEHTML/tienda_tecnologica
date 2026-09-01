@@ -28,10 +28,9 @@ function enviarCodigoVerificacion($correo, $codigo)
 
         $mail->Port = 587;
 
-        // ⏱️ IMPORTANTE: Agregar un límite de tiempo (Timeout) 
-        // para evitar que la página se quede congelada si Railway bloquea el puerto
-        $mail->Timeout = 5; 
-        $mail->SMTPConnectOptions = array(
+        // ⏱️ Timeout y opciones correctas para PHPMailer
+       $mail->Timeout = 5; 
+        $mail->SMTPOptions = array(
             'ssl' => array(
                 'verify_peer' => false,
                 'verify_peer_name' => false,
