@@ -1,5 +1,0 @@
-[phases.setup]
-nixPkgs = ["php82", "php82Extensions.mysqli", "apacheHttpd", "composer"]
-
-[start]
-cmd = "sed -i 's/Listen 80/Listen '${PORT:-8080}'/' /nix/store/*/etc/httpd/httpd.conf && httpd -D FOREGROUND -d ."
