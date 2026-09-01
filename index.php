@@ -2,6 +2,7 @@
 <?php
 
 session_start();
+ini_set('display_errors', 0); // Oculta cualquier aviso técnico en pantalla
 
 require_once "conexion.php";
 
