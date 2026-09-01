@@ -1,21 +1,15 @@
 <?php
+$host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost';
+$usuario = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
+$password = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: '';
+$base_datos = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'tienda_tecnologica';
+$port = getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: '3306';
 
-// Si Railway provee las variables de entorno, las usamos; si no, usamos los valores locales de XAMPP
-$host = getenv('MYSQLHOST') ?: 'localhost';
-$usuario = getenv('MYSQLUSER') ?: 'root';
-$password = getenv('MYSQLPASSWORD') ?: '';
-$base_datos = getenv('MYSQLDATABASE') ?: 'tienda_tecnologica';
-$port = getenv('MYSQLPORT') ?: '3306';
-
-// Crear conexión (incluyendo el puerto por si Railway lo requiere)
 $conn = new mysqli($host, $usuario, $password, $base_datos, $port);
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Configurar UTF-8
 $conn->set_charset("utf8mb4");
-
 ?>
