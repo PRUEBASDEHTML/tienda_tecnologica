@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once "../conexion.php";
 
 if (!isset($_SESSION["usuario_id"]) || $_SESSION["rol"] !== "admin") {
