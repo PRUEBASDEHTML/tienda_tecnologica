@@ -1,0 +1,55 @@
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+
+/* PORTADA */
+
+.hero {
+    background: linear-gradient(135deg, #0d6efd, #212529);
+    color: white;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+
+/* PRODUCTOS */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.producto-imagen {
+    height: 230px;
+    object-fit: cover;
+}
+
+
+/* NAVBAR */
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+
+/* FOOTER */
+
+footer {
+    margin-top: 50px;
+}
