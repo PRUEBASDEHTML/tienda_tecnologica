@@ -1,5 +1,5 @@
 [phases.setup]
-ymphPkgs = []
+nixPkgs = ["php82", "php82Extensions.mysqli", "composer"]
 
 [start]
 cmd = "php -S 0.0.0.0:$PORT -t ."
